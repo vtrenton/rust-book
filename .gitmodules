@@ -1,0 +1,27 @@
+[submodule "ch01/hello_cargo"]
+    path = ch01/hello_cargo
+    url = https://github.com/vtrenton/rust-book.git
+
+[submodule "ch02/guessing_game"]
+    path = ch02/guessing_game 
+    url = https://github.com/vtrenton/rust-book.git
+
+[submodule "ch03/branches"]
+    path = ch03/branches
+    url = https://github.com/vtrenton/rust-book.git
+
+[submodule "ch03/functions"]
+    path = ch03/functions
+    url = https://github.com/vtrenton/rust-book.git
+
+[submodule "ch03/loops"]
+    path = ch03/loops 
+    url = https://github.com/vtrenton/rust-book.git
+
+[submodule "ch03/projects/temp-conv"]
+    path = ch03/projects/temp-conv
+    url = https://github.com/vtrenton/rust-book.git
+
+[submodule "ch03/variables"]
+    path = ch03/variables
+    url = https://github.com/vtrenton/rust-book.git
