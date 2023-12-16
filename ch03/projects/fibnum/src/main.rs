@@ -6,7 +6,7 @@ fn main() {
         println!("enter a index number and we'll print the coresponding fibonacci number (ex. 3 -> 1, 1, 2)");
         println!("enter 'q' to quit");
         // ask user for number
-        io::stdin.read_line(&mut userlimit).expect("failed to read in number!")
+        io::stdin.read_line(&mut userlimit).expect("failed to read in number!");
 
         // let the user quit
         if userlimit == 'q' {
@@ -18,9 +18,6 @@ fn main() {
             Err(_) => continue,
         };
 
-        // add 1 since index of array starts at zero
-        let userlimit = userlimit + 1
-
         // pass into the fibcalc function
         let seq = fibcalc(userlimit);
 
@@ -29,12 +26,29 @@ fn main() {
             print!("{}, ", f);
         }
     }
-    // array of size specified -1 (index begins at zero)
 }
 
 // fibocalc - calcualte numbers up to user specified number
 // return them in an array
-fn fibocal(limit: i32) -> [i32; size] {
-    let mut n = 0;
+fn fibocal(size: i32) -> [i32; size] {
+
+    // set up array we will populate with caller
+    let array = [i32; size];
+
+    let mut a = 0;
+    let mut b = 1;
+
+    if size <= 0 {
+        [0]
+    }
     
+    for i in (2..size) {
+        let c = a + b;
+        let a = b;
+        let b = c;
+
+        // append value to array - how am i going to do this
+
+    }
+
 }
