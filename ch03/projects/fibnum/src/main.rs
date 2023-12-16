@@ -1,3 +1,5 @@
+use std::io;
+
 fn main() {
     loop {
         let mut userlimit = String::new();
@@ -6,10 +8,10 @@ fn main() {
         println!("enter a index number and we'll print the coresponding fibonacci number (ex. 3 -> 1, 1, 2)");
         println!("enter 'q' to quit");
         // ask user for number
-        io::stdin.read_line(&mut userlimit).expect("failed to read in number!");
+        io::stdin().read_line(&mut userlimit).expect("failed to read in number!");
 
         // let the user quit
-        if userlimit == 'q' {
+        if userlimit == "q" {
             std::process::exit(0);
         }
         // convert to i32
@@ -19,7 +21,7 @@ fn main() {
         };
 
         // pass into the fibcalc function
-        let seq = fibcalc(userlimit);
+        let seq = fibocal(userlimit);
 
         // print the numbers in the seq to stdout
         for f in seq {
@@ -39,10 +41,10 @@ fn fibocal(size: i32) -> [i32; size] {
     let mut b = 1;
 
     if size <= 0 {
-        [0]
+        return [0];
     }
     
-    for i in (2..size) {
+    for i in 2..size {
         let c = a + b;
         let a = b;
         let b = c;
