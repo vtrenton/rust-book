@@ -58,6 +58,49 @@ fn main() {
     // So when s1 leaves scope - nothing will be done
 
     // This will break
-    println!("{}, World!", s1);
+    //println!("{}, World!", s1);
+
+    // s1 is MOVED to s2
+    // meaning only s2 is accessible
+    // this is called a 'shallow copy'
+    /*
+    Stack               Heap
+    +------+           +------+
+    | s1   |           | hello |
+    | len:5|           +------+
+    | cap:5|           
+    |(invalid)         
+    +------+           
+    | s2   | ---->     
+    | len:5|           
+    | cap:5|           
+    +------+
+    */
+
+    // Rust will never perform "deep" copies automatically
+    // this helps with runtitme performance as well as safety
+
+    // If I do in fact want a 'deep copy'
+    // I can use 'clone'
+    let str1 = String::from('Hello');
+    let str2 = str1.clone();    
+
+    println!("str1 = {}, str2 = {}", str1, str2);
+
+    // in memory the value on the heap is being reallocated as well:
+    /*
+    Stack               Heap
+    +------+           +------+
+    | str1 | ---->     | hello |
+    | len:5|           +------+
+    | cap:5|           
+    +------+           +------+
+    | str2 | ---->     | hello |
+    | len:5|           +------+
+    | cap:5|
+    +------+
+    */
+
+    
 
 }
