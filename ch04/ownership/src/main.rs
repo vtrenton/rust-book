@@ -16,7 +16,15 @@ fn main() {
 
     let s1 = gives_ownership(); // gives_ownership sends its return value to s1
     let s2 = String::from("Hello"); // s2 comes into scope
-    let s3 = takes_and_gives_back(s2); // 
+    let s3 = takes_and_gives_back(s2);  // s2 is moved to the takes_and_gives_back function
+                                        // s2 is out of scope
+                                        // s3 is assigned to the return value
+
+    // we can return multiple values as a tuple
+    let str1 = String::from("Hello");
+    let (str2, len) = calculate_length(str1);
+
+    println!("The len of '{}' is {}.", str2, len).
 
 } // here x goes out of scope, s has already been moved into the take_ownership function
 
@@ -29,10 +37,16 @@ fn makes_copy(some_integer: i32) {
 }
 
 fn gives_ownership() -> String {
-    let some_string = String::from("yours");
-    some_string // return the String to the caller
+    let some_string = String::from("yours"); // some_string comes into scope
+    some_string // return the String to the caller to be assigned as s1 in main
 }
 
-fn takes_and_gives_back(a_string: String) -> {
-    
+fn takes_and_gives_back(a_string: String) -> String {
+    a_string // return s2 as is back to s3 in main
+}
+
+fn calculate_length(s: String) -> (String, usize) {
+    let length = s.len(); // calculate the length and store it in local var
+
+    (s, length) // return 's' as is but also return the length 'usize'
 }
