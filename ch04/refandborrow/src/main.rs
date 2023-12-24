@@ -13,7 +13,22 @@ fn main() {
     let mut s = String::from("Hello");
 
     // here we pass in a mutable reference
-    change(&mut s)
+    change(&mut s);
+
+    // A single reference at a time per variable in a given scope
+    // this would not be allowed
+    //let r1 = &mut s;
+    //let r2 = &mut s;
+
+    // I can however create as many immutable references as id like
+    let r1 = &s;
+    let r2 = &s;
+    // But once declared as immutable I can no longer assign an mutable reference
+    // This will not work
+    //let r3 = &mut s; 
+
+    println!("{} {}", r1, r2);
+
 }
 
 // we declare the local variable as the type of 'reference' to a String
@@ -37,4 +52,4 @@ fn calculate_length(s: &String) -> usize {
 // variables and references are immutible by default
 fn change(some_string: &mut String) {
     some_string.push_str(", world!");
-}
+} // the scope of the borrowed mutable s ends here
