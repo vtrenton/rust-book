@@ -29,6 +29,14 @@ fn main() {
 
     println!("{} {}", r1, r2);
 
+    // however the scope of the immutible references end once they are called for the last time in the function
+    // this will work because printf has already called r1 and r2 and they will not be used after this
+    let r3 = %mut s;
+
+    println!("{}", r3);
+
+    let reference_to_nothing = no_dangle();
+
 }
 
 // we declare the local variable as the type of 'reference' to a String
@@ -53,3 +61,22 @@ fn calculate_length(s: &String) -> usize {
 fn change(some_string: &mut String) {
     some_string.push_str(", world!");
 } // the scope of the borrowed mutable s ends here
+  
+// this will not run
+//fn dangle() -> &String { // dangle returns a ref to a string
+//    let s = String::from("hello"); // create a new string
+
+//    &s //return the reference to the String, s
+//} // s no longer exists, s is dropped
+  // once its dropped the string reference would no longer be pointing a string
+
+// instead we should pass the String not the reference
+fn no_dangle() -> String {
+    let s = String::from("Hello");
+
+    s
+}
+
+// references
+// At any time you can only have one mutable reference or any number of immutible refences
+// references must point to a valid value
