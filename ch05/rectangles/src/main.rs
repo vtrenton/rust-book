@@ -18,11 +18,25 @@ impl Rectangle {
     }
 
     fn can_hold(&self, rec: &Rectangle) -> bool {
-        // the books takes this approach
-        //self.width > rec.width && self.height > rec.height
-        // I'll take my own road :)
+        self.width > rec.width && self.height > rec.height
+        // This doesnt work! 1x10 would not fit into a 11x1
         // self.width * self.height > rec.width * rec.height
-        self.area() > rec.area()
+        // self.area() > rec.area()
+    }
+
+    // New Fancy Accociated functions that DONT take in self
+    // like String::from()
+    fn new(width: u32, height: u32) -> Self {
+        Self {
+            width,
+            height,
+        }
+    }
+    fn square(size: u32) -> Self {
+        Self {
+            width: size,
+            height: size,
+        }
     }
 }
 
@@ -48,6 +62,11 @@ fn main() {
         width: 60,
         height: 45,
     };
+    
+    // Lets test our new() associated function
+    let rekt = Rectangle::new(35, 78);
+
+    println("get rekt son {:#$}", );
 
 
     println!(
