@@ -1,18 +1,41 @@
-mod front_of_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {}
+// package > crates > modules
 
-        fn seat_at_table() {}
-    }
+use std::fmt::Result;
+// we can use the 'as' keyword to create an alias
+use std::io::Result as IoResult;
+// if I want to import multiple items in the same crate
+// I can use the following syntax
+// this will pull both cmp::Ordering and io from the std package
+use std::{cmp::Ordering, io};
+// we can also use nested paths
+use std::io::{self, Write};
+// globs '*' are also supported to pull everything from a module into scope
+use std::collections::*;
 
-    mod serving {
-        fn take_order() {}
-
-        fn serve_order() {}
-
-        fn take_payment() {}
-    }
+fn function1() -> Result {
+    // do stuff
 }
+
+fn function2() -> IoResult {
+    // do other stuff
+}
+
+mod front_of_house;
+//mod front_of_house {
+//    pub mod hosting {
+//        pub fn add_to_waitlist() {}
+//
+//        fn seat_at_table() {}
+//    }
+//
+//    mod serving {
+//        fn take_order() {}
+//
+//        fn serve_order() {}
+//
+//        fn take_payment() {}
+//    }
+//}
 
 mod back_of_house {
     // with structs every field is private
@@ -44,12 +67,15 @@ mod back_of_house {
     }
 
     fn fix_incorrect_order() {
-        cook_order();
+        //cook_order();
         super::deliver_order()
     }
 }
 
-use crate::front_of_house::hosting;
+// We can reexport this with the pub use method
+// now external modules can reference this import with
+// resturant::front_of_house::hosting
+pub use crate::front_of_house::hosting; 
 
 pub fn eat_at_resturant() {
     // Absolute Path
